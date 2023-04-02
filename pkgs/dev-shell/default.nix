@@ -30,6 +30,9 @@ let
       pyshark
       orjson
       cython_3
+      line_profiler
+      memory_profiler
+      snakeviz
     ]);
 
   pythonIcon = "f3e2"; # https://fontawesome.com/v5.15/icons/python?style=brands

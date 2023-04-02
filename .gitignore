@@ -136,3 +136,7 @@ result
 *.so
 build
 *.html
+
+#proflie
+*.prof
+*.lprof
