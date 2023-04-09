@@ -5,7 +5,7 @@ from Cython.Build import cythonize
 
 ext_modules = cythonize([
     Extension("demo.primes", ["./demo/cython_demo/primes.py"]), 
-    Extension("demo.calulate_z", ["./demo/cython_demo/calculate_z_serial.py"])],annotate=True)
+    Extension("demo.calulate_z", ["./demo/cython_demo/calculate_z_serial.py"],extra_compile_args=['-fopenmp'], extra_link_args=['-fopenmp'])],annotate=True)
 
 setup(
     name="my_package",
