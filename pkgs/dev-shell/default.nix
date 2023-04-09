@@ -14,6 +14,7 @@ let
       pyarrow
       pandas
       numpy
+      numexpr
       graphviz
       prometheus_client
       nest-asyncio
