@@ -3,11 +3,12 @@ import time
 import cProfile
 import subprocess
 from utils import timefn
+import pysnooper
+
 # area of complex space to investigate 
 x1, x2, y1, y2 = -1.8, 1.8, -1.8, 1.8
 c_real, c_imag = -0.62772, -.42193
 
-@profile
 def calc_pure_python(desired_width, max_iterations): 
     """Create a list of complex coordinates (zs) and complex parameters (cs), build Julia set, and display""" 
     x_step = (float(x2 - x1) / float(desired_width))
@@ -22,6 +23,7 @@ def calc_pure_python(desired_width, max_iterations):
     while xcoord < x2: 
         x.append(xcoord) 
         xcoord += x_step
+
     # Build a list of coordinates and the initial condition for each cell. 
     # Note that our initial condition is a constant and could easily be removed; 
     # we use it to simulate a real-world scenario with several inputs to # our function. 
@@ -41,6 +43,7 @@ def calc_pure_python(desired_width, max_iterations):
     assert sum(output) == 33219980
 
 @timefn
+@pysnooper.snoop()
 def calculate_z_serial_purepython(maxiter, zs, cs): 
     """Calculate output list using Julia update rule""" 
     output = [0] * len(zs) 
@@ -53,6 +56,13 @@ def calculate_z_serial_purepython(maxiter, zs, cs):
             n += 1
         output[i] = n
     return output
+
+# def launch_memory_usage_server(port=8080): 
+#     import cherrypy 
+#     import dowser
+#     cherrypy.tree.mount(dowser.Root()) 
+#     cherrypy.config.update({ 'environment': 'embedded', 'server.socket_port': port})
+#     cherrypy.engine.start()
 
 if __name__ == "__main__": 
     # Calculate the Julia set using a pure Python solution with 

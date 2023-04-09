@@ -33,6 +33,9 @@ let
       line_profiler
       memory_profiler
       snakeviz
+      guppy3
+      cherrypy
+      pysnooper
     ]);
 
   pythonIcon = "f3e2"; # https://fontawesome.com/v5.15/icons/python?style=brands
@@ -40,7 +43,7 @@ let
 in mkShell rec {
   name = "Cython";
 
-  packages = with pkgs; [ pkgs.poetry customizedPython pre-commit tshark];
+  packages = with pkgs; [ pkgs.poetry customizedPython pre-commit tshark linuxPackages_latest.perf];
 
   shellHook = ''
     export PS1="$(echo -e '\u${pythonIcon}') {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"
