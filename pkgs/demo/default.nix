@@ -5,7 +5,7 @@ buildPythonApplication {
 
   version = "1.0.0";
 
-  srcs = ../../demo;
+  srcs = ../..;
 
   propagatedBuildInputs = [ cython_3 ];
 

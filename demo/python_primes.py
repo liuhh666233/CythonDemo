@@ -1,3 +1,5 @@
+from demo.utils import timefn
+
 def primes(nb_primes):
     p = []
     n = 2
@@ -13,7 +15,7 @@ def primes(nb_primes):
         n += 1
     return p
 
-
+@timefn
 def main():
     for i in range(1000):
         primes(i)
