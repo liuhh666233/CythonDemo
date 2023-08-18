@@ -8,7 +8,6 @@ stock_nums = np.random.randint(0, 500, 1000000, dtype=np.int32)
 stock_prices = np.random.randint(0, 10, 1000000, dtype=np.int32)
 
 
-
 @timefn
 # @profile
 def test_python_dict():
@@ -20,7 +19,6 @@ def test_python_dict():
     for i in range(length):
         result += data[i] * stock_prices[i]
     print(result)
-
 
 
 @timefn
@@ -40,7 +38,8 @@ def test_int_vector():
     data = IntVector()
     for i in range(length):
         data[i] = stock_ids[i]
-    
+
+
 @timefn
 @profile
 def test_list():

@@ -3,11 +3,25 @@ from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 
 
-ext_modules = cythonize([
-    Extension("demo.primes", ["./demo/cython_demo/primes.py"]), 
-    Extension("demo.cython_dict", ["./demo/cython_demo/cython_dict.pyx"]), 
-    Extension("demo.cython_vector", ["./demo/cython_demo/cython_vector.pyx"]), 
-    Extension("demo.calulate_z", ["./demo/cython_demo/calculate_z_serial.py"],extra_compile_args=['-fopenmp'], extra_link_args=['-fopenmp'])],annotate=True)
+ext_modules = cythonize(
+    [
+        Extension("demo.primes", ["./demo/cython_demo/primes.py"]),
+        Extension(
+            "demo.task_manager",
+            ["./demo/cython_demo/task_manager.pyx"],
+            extra_compile_args=["-fopenmp"],
+            extra_link_args=["-fopenmp"],
+        ),
+        Extension(
+            "demo.calulate_z",
+            ["./demo/cython_demo/calculate_z_serial.py"],
+            extra_compile_args=["-fopenmp"],
+             extra_link_args=["-fopenmp"],
+        ),
+    ],
+    annotate=True,
+    compiler_directives={"language_level": "3"},
+)
 
 setup(
     name="my_package",
